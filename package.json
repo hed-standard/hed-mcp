@@ -40,7 +40,7 @@
   "homepage": "https://github.com/hed-standard/hed-mcp#readme",
   "devDependencies": {
     "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
+    "@types/express": "^5.0.6",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.15",
     "@types/ws": "^8.18.1",
@@ -52,7 +52,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.16.0",
     "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^5.2.1",
     "hed-validator": "^4.1.4",
     "ws": "^8.18.0",
     "zod": "^3.25.76"
