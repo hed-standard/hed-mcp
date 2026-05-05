@@ -39,7 +39,12 @@ const validateHedSidecarInputSchema = {
 // Generate Zod schema from MCP schema
 const ValidateHedSidecarSchema = mcpToZod(validateHedSidecarInputSchema);
 
-export type ValidateHedSidecarArgs = z.infer<typeof ValidateHedSidecarSchema>;
+export type ValidateHedSidecarArgs = {
+  filePath: string;
+  hedVersion: string;
+  checkForWarnings?: boolean;
+  jsonData?: string;
+};
 
 /**
  * Tool definition for validating HED sidecar files

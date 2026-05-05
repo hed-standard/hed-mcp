@@ -40,7 +40,12 @@ const validateHedStringInputSchema = {
 // Generate Zod schema from MCP schema
 const ValidateHedStringSchema = mcpToZod(validateHedStringInputSchema);
 
-export type ValidateHedStringArgs = z.infer<typeof ValidateHedStringSchema>;
+export type ValidateHedStringArgs = {
+  hedString: string;
+  hedVersion: string;
+  checkForWarnings?: boolean;
+  definitions?: string[];
+};
 
 /**
  * Tool definition for validating HED strings
