@@ -52,7 +52,14 @@ const validateHedTsvInputSchema = {
 // Generate Zod schema from MCP schema
 const ValidateHedTsvSchema = mcpToZod(validateHedTsvInputSchema);
 
-export type ValidateHedTsvArgs = z.infer<typeof ValidateHedTsvSchema>;
+export type ValidateHedTsvArgs = {
+  filePath: string;
+  hedVersion: string;
+  checkForWarnings?: boolean;
+  fileData?: string;
+  jsonData?: string;
+  definitions?: string[];
+};
 
 /**
  * Tool definition for validating HED TSV files
