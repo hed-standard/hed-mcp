@@ -1124,6 +1124,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 - [HED JavaScript Library](https://github.com/hed-standard/hed-javascript)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [BIDS Specification](https://bids-specification.readthedocs.io/)
+- [Browser-based HED validator](https://www.hedtags.org/hed-web)
 
 ## 📞 Support
 
