@@ -48,6 +48,12 @@ describe('mcpToZod', () => {
     
     const minimalResult = zodSchema.safeParse(minimalData);
     expect(minimalResult.success).toBe(true);
+    if (minimalResult.success) {
+      expect(minimalResult.data).toEqual({
+        name: "test",
+        age: false
+      });
+    }
   });
 
   test('should handle missing properties gracefully', () => {
