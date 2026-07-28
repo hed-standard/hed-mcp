@@ -1,4 +1,4 @@
-﻿import { handleValidateHedString, ValidateHedStringArgs, validateHedString } from '../../src/tools/validateHedString';
+import { handleValidateHedString, ValidateHedStringArgs, validateHedString } from '../../src/tools/validateHedString';
 import { buildSchemasFromVersion, DefinitionManager } from 'hed-validator';
 describe('validateHedStringTool', () => {
 

@@ -18,6 +18,9 @@ export function mcpToZod(mcpSchema: any): z.ZodTypeAny {
           if (property.description) {
             zodType = zodType.describe(property.description);
           }
+          if (property.default !== undefined) {
+            zodType = zodType.default(property.default);
+          }
           break;
           
         case "boolean":
@@ -39,6 +42,9 @@ export function mcpToZod(mcpSchema: any): z.ZodTypeAny {
           if (property.description) {
             zodType = zodType.describe(property.description);
           }
+          if (property.default !== undefined) {
+            zodType = zodType.default(property.default);
+          }
           break;
           
         default:
@@ -46,12 +52,17 @@ export function mcpToZod(mcpSchema: any): z.ZodTypeAny {
           if (property.description) {
             zodType = zodType.describe(property.description);
           }
+          if (property.default !== undefined) {
+            zodType = zodType.default(property.default);
+          }
           break;
       }
       
-      // Make optional if not in required array
+      // Make optional or handle default if not in required array
       if (!mcpSchema.required?.includes(key)) {
-        zodType = zodType.optional();
+        if (property.default === undefined) {
+          zodType = zodType.optional();
+        }
       }
       
       shape[key] = zodType;
