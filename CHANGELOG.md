@@ -35,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Validation Features
 - Comprehensive error detection and reporting
-- Optional warning detection for enhanced quality assurance  
+- Optional warning detection for enhanced quality assurance
 - Detailed issue formatting with error codes and messages
 - Location-aware error reporting for TSV files
 - Severity-based issue classification (errors vs warnings)
@@ -85,11 +85,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### File Structure
 ```
 src/
-├── server.ts              # Main MCP server
-├── tools/                 # Validation tools
-├── resources/             # MCP resources  
-├── utils/                 # Shared utilities
-└── types/                 # Type definitions
+|-- server.ts              # Main MCP server
+|-- tools/                 # Validation tools
+|-- resources/             # MCP resources
+|-- utils/                 # Shared utilities
+`-- types/                 # Type definitions
 ```
 
 #### Key Components
@@ -121,7 +121,7 @@ src/
 - Automated formatting with consistent style
 - Pre-commit hooks for quality enforcement
 
-#### Testing Strategy  
+#### Testing Strategy
 - Test-driven development approach
 - Real-world data validation
 - Edge case coverage

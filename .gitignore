@@ -15,8 +15,7 @@ build/
 .env.test.local
 .env.production.local
 
-# IDE and editor files
-.vscode/
+# IDE and editor files (.vscode/ is handled below: settings.json is shared)
 .vscode-test/
 .idea/
 *.swp
@@ -24,10 +23,8 @@ build/
 *~
 
 # VS Code specific
-.vscode/settings.json
 .vscode/tasks.json
 .vscode/launch.json
-.vscode/extensions.json
 .history/
 *.code-workspace
 
@@ -133,6 +130,7 @@ temp/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 *.suo
 *.ntvs*
@@ -153,12 +151,20 @@ temp/
 !.yarn/sdks
 !.yarn/versions
 
-# GitHub Actions artifacts (keep workflows)
+# GitHub Actions artifacts (keep workflows, instructions and configuration)
 !.github/
 .github/*
 !.github/workflows/
 !.github/workflows/*.yml
 !.github/workflows/*.yaml
+!.github/instructions/
+!.github/instructions/*.md
+!.github/copilot-instructions.md
+!.github/dependabot.yml
 
-# Project
-.status/
+
+# Personal per-repo Claude Code notes (imports .status/local-environment.md)
+CLAUDE.local.md
+
+# Personal per-repo settings (absolute paths, claudeMdExcludes)
+.claude/settings.local.json
