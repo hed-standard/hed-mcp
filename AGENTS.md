@@ -50,7 +50,7 @@ Never quote test counts or dependency versions in a committed file: they change 
 
 ## Rules that are easy to get wrong
 
-- `hed-validator` is pinned to an npm release, never to a git commit: this package publishes a `bin`, and a git dependency would make every consumer build the validator from source at install time.
+- `hed-validator` is installed from hed-javascript's `main` branch by git URL, not from npm, because `main` implements the current HED specification before a release does. The lockfile records the exact commit; `npm update hed-validator` moves it. Installing it builds hed-javascript (its `prepare` script), so an install needs git and takes longer than a registry fetch.
 - Schema versions bundled in `hed-validator` (such as `8.4.0`) load offline; any other version is fetched from GitHub by the validator, so a test that uses one needs the network.
 - `tsconfig.json` compiles `src/` and `examples/` with `rootDir` at the repo root, which is why the build lands in `dist/src/` and `dist/examples/`, not `dist/`. `tests/` compile separately under `tsconfig.test.json` (CommonJS).
 - `jest.config.mjs` maps `hed-validator` to its CommonJS build by path; a package layout change in hed-validator breaks the suite there first.
@@ -60,7 +60,7 @@ Never quote test counts or dependency versions in a committed file: they change 
 
 Referred to by name; a session that needs one must be given access to that checkout.
 
-- `hed-javascript` - the source of the `hed-validator` package this server wraps; its release decides what hed-mcp can validate.
+- `hed-javascript` - the source of the `hed-validator` package this server wraps, installed from its `main` branch; what lands there decides what hed-mcp can validate.
 - `hed-schemas` - the HED schemas the validator bundles.
 - `hed-specification` - the validation rules and the error-code appendix the issue messages link to.
 - `hed-typescript` - the TypeScript port of hed-javascript (same package name, not yet published).

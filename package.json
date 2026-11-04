@@ -53,7 +53,7 @@
     "@modelcontextprotocol/sdk": "^1.32.2",
     "cors": "^2.8.5",
     "express": "^5.3.0",
-    "hed-validator": "^4.2.0",
+    "hed-validator": "git+https://github.com/hed-standard/hed-javascript.git#main",
     "js-yaml": "^5.5.0",
     "ws": "^8.22.0",
     "zod": "^4.6.7"
