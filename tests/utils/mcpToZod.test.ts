@@ -27,25 +27,25 @@ describe('mcpToZod', () => {
     };
 
     const zodSchema = mcpToZod(mcpSchema);
-    
+
     // Test that it's a ZodObject
     expect(zodSchema).toBeInstanceOf(z.ZodObject);
-    
+
     // Test valid data
     const validData = {
       name: "test",
       age: true,
       tags: ["tag1", "tag2"]
     };
-    
+
     const result = zodSchema.safeParse(validData);
     expect(result.success).toBe(true);
-    
+
     // Test that optional fields work
     const minimalData = {
       name: "test"
     };
-    
+
     const minimalResult = zodSchema.safeParse(minimalData);
     expect(minimalResult.success).toBe(true);
     if (minimalResult.success) {

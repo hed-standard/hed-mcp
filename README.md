@@ -1,8 +1,6 @@
-# HED MCP TypeScript Server
+# HED MCP TypeScript server
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue)](https://www.typescriptlang.org/)
-[![MCP](https://img.shields.io/badge/MCP-1.16.0-green)](https://modelcontextprotocol.io/)
 [![Maintainability](https://qlty.sh/gh/hed-standard/projects/hed-mcp/maintainability.svg)](https://qlty.sh/gh/hed-standard/projects/hed-mcp)
 [![Code Coverage](https://qlty.sh/gh/hed-standard/projects/hed-mcp/coverage.svg)](https://qlty.sh/gh/hed-standard/projects/hed-mcp)
 ## Introduction
@@ -60,40 +58,40 @@ Model Context Protocol (MCP) is:
 
 ## Understanding HED
 
-### HED Basics
+### HED basics
 
 HED uses a hierarchical tag structure where tags are organized from general to specific:
 
 ```
 Event                 # General event type
 Event/Sensory-event   # More specific
-Sensory-event         # Same as Event/Sensory-event 
+Sensory-event         # Same as Event/Sensory-event
 ```
 
 The hierarchical structure is used for search generality -- allowing a search for `Event` to pick up `Event/Sensory-event` as well as `Sensory-event`.
 
 **Note**: All tags in the HED vocabulary are unique. It is recommended that you annotate using just the tag, not the full path.
 
-### Tag Structure
+### Tag structure
 
 - **Path notation**: Tags use forward slashes to indicate hierarchy
 - **Grouping**: Parentheses group related tags: `(Red, Large)`
 - **Definitions**: Custom definitions can be used for complex concepts
 - **Extension**: Custom subtags can be added for specialization
 
-### Common HED Patterns
+### Common HED patterns
 
 #### Basic event description
 ```
 Sensory-event, Red
 ```
 
-#### Grouped Tags
+#### Grouped tags
 ```
 Sensory-event, (Red, Square)
 ```
 
-#### Using Definitions
+#### Using definitions
 
 You can create definitions to represent strings of tags that you frequently use:
 ```
@@ -106,12 +104,12 @@ Def/BlueSquare
 can appear anywhere a normal HED tag would.
 Tools can substitute the full annotation when needed.
 
-### Schema Versions
+### Schema versions
 
 HED schemas evolve over time. Use the latest version whenever possible:
 
-- **Standard HED**: `8.4.0` - Basic vocabulary 
-- **Library schemas**: 
+- **Standard HED**: `8.4.0` - Basic vocabulary
+- **Library schemas**:
   - `lang_1.1.0` - Language-related tags
   - `score_2.1.0` - EEG features based on SCORE standard
 
@@ -125,13 +123,13 @@ Before using the HED MCP Server, ensure you have:
 2. **Basic understanding of HED**: Familiarity with HED concepts is helpful
 3. **MCP-compatible client**: Such as the MCP Inspector or custom client
 
-### Install Dependencies
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-### Build the Server
+### Build the server
 
 ```bash
 npm run build
@@ -139,53 +137,53 @@ npm run build
 
 This creates the distribution files in the `dist/` directory.
 
-### Test the Installation
+### Test the installation
 
 ```bash
 npx @modelcontextprotocol/inspector node dist/server.js
 ```
 
-## Server Architecture
+## Server architecture
 
-### Core Components
+### Core components
 
 ```
 HED MCP Server (src)
-├── server.ts              # Main MCP server (stdio/WebSocket modes)
-├── tools/                 # Validation functions
-│   ├── validateHedString.ts
-│   ├── validateHedTsv.ts
-│   ├── validateHedSidecar.ts
-│   └── getFileFromPath.ts
-├── resources/             # Schema Information
-│   └── hedSchema.ts
-├── utils/                 # Utilities
-│   ├── definitionProcessor.ts
-│   ├── fileReader.ts
-│   ├── issueFormatter.ts
-│   ├── mcpToZod.ts
-│   └── schemaCache.ts     # Schema caching system
-└── types/                 # TypeScript definitions
+|-- server.ts              # Main MCP server (stdio/WebSocket modes)
+|-- tools/                 # Validation functions
+|   |-- validateHedString.ts
+|   |-- validateHedTsv.ts
+|   |-- validateHedSidecar.ts
+|   `-- getFileFromPath.ts
+|-- resources/             # Schema Information
+|   `-- hedSchema.ts
+|-- utils/                 # Utilities
+|   |-- definitionProcessor.ts
+|   |-- fileReader.ts
+|   |-- issueFormatter.ts
+|   |-- mcpToZod.ts
+|   `-- schemaCache.ts     # Schema caching system
+`-- types/                 # TypeScript definitions
 
 Examples (examples/)
-├── definition-usage.ts    # Example of HED definition processing
-├── hed-demo.html          # Interactive demo and integration guide
-├── hed-validator-client.js # Modern browser client for HED validation
-├── hed-validator.css      # Styles for the browser interface
-├── hed-validator.html     # Full-featured browser validation interface
-├── http-server.ts         # HTTP REST API server example
-├── mcp-client.js          # Interactive MCP client example
-├── README.md              # README for the examples
-└── test-server.js         # Automated server testing script
+|-- definition-usage.ts    # Example of HED definition processing
+|-- hed-demo.html          # Interactive demo and integration guide
+|-- hed-validator-client.js # Modern browser client for HED validation
+|-- hed-validator.css      # Styles for the browser interface
+|-- hed-validator.html     # Full-featured browser validation interface
+|-- http-server.ts         # HTTP REST API server example
+|-- mcp-client.js          # Interactive MCP client example
+|-- README.md              # README for the examples
+`-- test-server.js         # Automated server testing script
 ```
 
-### Data Flow
+### Data flow
 
-1. **Client request** → MCP server
-2. **Schema loading** → Cache or load from network
-3. **Data processing** → Parse and validate
-4. **Issue formatting** → Standardize error/Warning format
-5. **Response** → Return to client
+1. **Client request** -> MCP server
+2. **Schema loading** -> Cache or load from network
+3. **Data processing** -> Parse and validate
+4. **Issue formatting** -> Standardize error/Warning format
+5. **Response** -> Return to client
 
 ### Caching system
 
@@ -215,7 +213,7 @@ Test the server directly:
 # Standard MCP server (stdio mode)
 npm start
 
-# WebSocket mode  
+# WebSocket mode
 node dist/server.js --websocket --port=8080
 
 # HTTP REST API server
@@ -343,7 +341,7 @@ node test-mcp-client.js
 }
 ```
 
-### Validate a TSV File
+### Validate a TSV file
 
 ```json
 {
@@ -379,7 +377,7 @@ node test-mcp-client.js
 }
 ```
 
-### Read a File
+### Read a file
 
 ```json
 {
@@ -393,9 +391,9 @@ node test-mcp-client.js
 }
 ```
 
-## Working with HED Data
+## Working with HED data
 
-### Validation Workflow
+### Validation workflow
 
 1. **Schema Selection**: Choose appropriate HED schema version
 2. **Definition Setup**: Prepare any custom definitions
@@ -403,9 +401,9 @@ node test-mcp-client.js
 4. **Issue Resolution**: Address errors and warnings
 5. **Quality Assurance**: Final validation with warnings enabled
 
-### Common Validation Scenarios
+### Common validation scenarios
 
-#### Scenario 1: New Dataset Validation
+#### Scenario 1: new dataset validation
 
 ```json
 // 1. First validate sidecar files
@@ -420,7 +418,7 @@ node test-mcp-client.js
 
 // 2. Then validate TSV files with sidecar data
 {
-  "name": "validateHedTsv", 
+  "name": "validateHedTsv",
   "arguments": {
     "filePath": "/data/sub-01_task-rest_events.tsv",
     "hedVersion": "8.4.0",
@@ -430,7 +428,7 @@ node test-mcp-client.js
 }
 ```
 
-#### Scenario 2: Interactive Annotation
+#### Scenario 2: interactive annotation
 
 ```json
 // Test individual HED strings during annotation
@@ -444,7 +442,7 @@ node test-mcp-client.js
 }
 ```
 
-#### Scenario 3: Definition Development
+#### Scenario 3: definition development
 
 ```json
 // Test definitions before using in datasets
@@ -452,7 +450,7 @@ node test-mcp-client.js
   "name": "validateHedString",
   "arguments": {
     "hedString": "Def/MyStimulus, Blue",
-    "hedVersion": "8.4.0", 
+    "hedVersion": "8.4.0",
     "definitions": [
       "(Definition/MyStimulus, (Event/Sensory-event, (Onset)))"
     ],
@@ -518,12 +516,12 @@ node test-mcp-client.js
 
 The HED MCP server can be used in browsers through several approaches. All browser files are located in the `examples/` directory.
 
-### Option 1: Complete Validation Interface
+### Option 1: complete validation interface
 
 Open `examples/hed-validator.html` for a full-featured web interface:
 
 - **Multiple validation modes**: String, TSV, and Sidecar validation
-- **Modern UI**: Clean, responsive design with professional styling  
+- **Modern UI**: Clean, responsive design with professional styling
 - **Real-time feedback**: Instant validation results with detailed error reporting
 - **Multiple HED versions**: Support for different schema versions and libraries
 
@@ -535,7 +533,7 @@ npx serve examples/
 open examples/hed-validator.html
 ```
 
-### Option 2: Interactive Demo & Integration Guide
+### Option 2: interactive demo & integration guide
 
 View `examples/hed-demo.html` for:
 
@@ -543,7 +541,7 @@ View `examples/hed-demo.html` for:
 - **Integration guide**: Complete API documentation and code examples
 - **Developer tools**: Quick validation form for testing
 
-### Option 3: Browser Client Library
+### Option 3: browser client library
 
 Include the modern browser client in your web application:
 
@@ -553,16 +551,16 @@ Include the modern browser client in your web application:
 <script>
   // Create validator client (auto-detects server availability)
   const validator = new HEDValidatorClient();
-  
+
   // Validate HED string
   const result = await validator.validateString('Event/Sensory-event, Red');
-  
+
   // Or create a pre-built validation form
   HEDValidatorClient.createValidationForm('my-container');
 </script>
 ```
 
-### Option 4: Full HTTP API Integration
+### Option 4: full HTTP API integration
 
 For complete server-based validation, run the HTTP API server:
 
@@ -591,7 +589,7 @@ The browser client automatically detects and uses the server at `http://localhos
     <script>
         async function validateHED() {
             const hedString = document.getElementById('hedInput').value;
-            
+
             try {
                 const response = await fetch('/api/validate', {
                     method: 'POST',
@@ -602,30 +600,30 @@ The browser client automatically detects and uses the server at `http://localhos
                         checkForWarnings: true
                     })
                 });
-                
+
                 const result = await response.json();
                 displayResults(result);
             } catch (error) {
                 console.error('Validation failed:', error);
             }
         }
-        
+
         function displayResults(result) {
             const resultsDiv = document.getElementById('results');
-            
+
             if (result.errors.length === 0) {
                 resultsDiv.innerHTML = '<p style="color: green;">Valid HED string!</p>';
             } else {
                 resultsDiv.innerHTML = '<p style="color: red;">Validation errors:</p>';
                 result.errors.forEach(error => {
-                    resultsDiv.innerHTML += `<p>• ${error.message}</p>`;
+                    resultsDiv.innerHTML += `<p>- ${error.message}</p>`;
                 });
             }
-            
+
             if (result.warnings.length > 0) {
                 resultsDiv.innerHTML += '<p style="color: orange;">Warnings:</p>';
                 result.warnings.forEach(warning => {
-                    resultsDiv.innerHTML += `<p>• ${warning.message}</p>`;
+                    resultsDiv.innerHTML += `<p>- ${warning.message}</p>`;
                 });
             }
         }
@@ -646,7 +644,7 @@ Add to your MCP client configuration:
     "hed-mcp": {
       "command": "node",
       "args": ["dist/server.js"],
-      "cwd": "/path/to/hed-mcp-typescript"
+      "cwd": "/path/to/hed-mcp"
     }
   }
 }
@@ -706,7 +704,7 @@ Or in MCP client configuration:
 // Simple stimulus definition
 "(Definition/RedCircle, (Event/Sensory-event, (Red, Circle)))"
 
-// Complex behavioral definition  
+// Complex behavioral definition
 "(Definition/CorrectResponse, (Action/Move, Agent/Human, (Correct-action, (Voluntary))))"
 
 // Hierarchical definitions
@@ -757,7 +755,7 @@ await server.connect();
 
 try {
   const results = await Promise.all(
-    files.map(file => 
+    files.map(file =>
       server.call('validateHedTsv', {
         filePath: file,
         hedVersion: '8.4.0'
@@ -798,7 +796,7 @@ const client = new MCPClient({
   server: {
     command: 'node',
     args: ['dist/server.js'],
-    cwd: '/path/to/hed-mcp-typescript'
+    cwd: '/path/to/hed-mcp'
   }
 });
 
@@ -814,9 +812,9 @@ async function safeValidation(hedString, hedVersion) {
       name: 'validateHedString',
       arguments: { hedString, hedVersion }
     });
-    
+
     const result = JSON.parse(response.content[0].text);
-    
+
     return {
       success: result.errors.length === 0,
       errors: result.errors,
@@ -825,7 +823,7 @@ async function safeValidation(hedString, hedVersion) {
   } catch (error) {
     return {
       success: false,
-      errors: [{ 
+      errors: [{
         code: 'CLIENT_ERROR',
         message: error.message,
         severity: 'error'
@@ -846,14 +844,14 @@ from mcp_client import MCPClient
 class HEDValidator:
     def __init__(self, server_path):
         self.client = MCPClient(server_path)
-    
+
     async def __aenter__(self):
         await self.client.connect()
         return self
-    
+
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         await self.client.disconnect()
-    
+
     async def validate_string(self, hed_string, hed_version="8.4.0", check_warnings=True):
         """Validate a HED string."""
         response = await self.client.call('tools/call', {
@@ -864,9 +862,9 @@ class HEDValidator:
                 'checkForWarnings': check_warnings
             }
         })
-        
+
         return json.loads(response['content'][0]['text'])
-    
+
     async def validate_file(self, file_path, hed_version="8.4.0", definitions=None):
         """Validate a TSV file."""
         args = {
@@ -874,26 +872,26 @@ class HEDValidator:
             'hedVersion': hed_version,
             'checkForWarnings': True
         }
-        
+
         if definitions:
             args['definitions'] = definitions
-        
+
         response = await self.client.call('tools/call', {
             'name': 'validateHedTsv',
             'arguments': args
         })
-        
+
         return json.loads(response['content'][0]['text'])
 
 # Usage example
 async def main():
-    async with HEDValidator('/path/to/hed-mcp-typescript/dist/server.js') as validator:
+    async with HEDValidator('/path/to/hed-mcp/dist/server.js') as validator:
         # Validate a HED string
         result = await validator.validate_string(
             "Event/Sensory-event, Red, Blue",
             hed_version="8.4.0"
         )
-        
+
         if result['errors']:
             print("Validation errors found:")
             for error in result['errors']:
@@ -923,7 +921,7 @@ find "$DATASET_DIR" -name "*_events.json" | while read file; do
     validate_sidecar "$file" "$HED_VERSION"
 done
 
-# Validate TSV files  
+# Validate TSV files
 find "$DATASET_DIR" -name "*_events.tsv" | while read file; do
     echo "Validating TSV: $file"
     # Call validateHedTsv via MCP client
@@ -939,22 +937,22 @@ echo "Dataset validation complete!"
 
 ```
 src/
-├── server.ts              # Main MCP server (stdio/WebSocket)
-├── tools/                 # MCP tools (validation functions)
-│   ├── validateHedString.ts
-│   ├── validateHedTsv.ts
-│   ├── validateHedSidecar.ts
-│   └── getFileFromPath.ts
-├── resources/             # MCP resources (schema info)
-│   └── hedSchema.ts
-├── utils/                 # Utility functions
-│   ├── mcpToZod.ts
-│   ├── definitionProcessor.ts
-│   ├── fileReader.ts
-│   ├── issueFormatter.ts
-│   └── schemaCache.ts
-└── types/                 # TypeScript type definitions
-    └── index.ts
+|-- server.ts              # Main MCP server (stdio/WebSocket)
+|-- tools/                 # MCP tools (validation functions)
+|   |-- validateHedString.ts
+|   |-- validateHedTsv.ts
+|   |-- validateHedSidecar.ts
+|   `-- getFileFromPath.ts
+|-- resources/             # MCP resources (schema info)
+|   `-- hedSchema.ts
+|-- utils/                 # Utility functions
+|   |-- mcpToZod.ts
+|   |-- definitionProcessor.ts
+|   |-- fileReader.ts
+|   |-- issueFormatter.ts
+|   `-- schemaCache.ts
+`-- types/                 # TypeScript type definitions
+    `-- index.ts
 ```
 
 ### Available scripts
@@ -970,12 +968,12 @@ npm start           # Run stdio MCP server
 npm run start:http  # Run HTTP API server
 ```
 
-### Development Workflow
+### Development workflow
 
 1. **Clone and install**:
    ```bash
    git clone <repository-url>
-   cd hed-mcp-typescript
+   cd hed-mcp
    npm install
    ```
 
@@ -998,7 +996,7 @@ npm run start:http  # Run HTTP API server
 
 ### Common issues
 
-#### Issue: Server won't start
+#### Issue: server won't start
 
 **Symptoms**: Server exits immediately or shows connection errors
 
@@ -1008,7 +1006,7 @@ npm run start:http  # Run HTTP API server
 3. Check for port conflicts
 4. Review error messages in console
 
-#### Issue: Schema loading failures
+#### Issue: schema loading failures
 
 **Symptoms**: `SCHEMA_LOAD_FAILED` errors
 
@@ -1018,7 +1016,7 @@ npm run start:http  # Run HTTP API server
 3. Check schema cache directory permissions
 4. Try clearing cache: delete node_modules and reinstall
 
-#### Issue: File reading errors
+#### Issue: file reading errors
 
 **Symptoms**: `FILE_READ_ERROR` when accessing files
 
@@ -1028,7 +1026,7 @@ npm run start:http  # Run HTTP API server
 3. Use inline data (`fileData`) for testing
 4. Ensure proper file encoding (UTF-8)
 
-#### Issue: Validation inconsistencies
+#### Issue: validation inconsistencies
 
 **Symptoms**: Different results from same input
 
@@ -1126,7 +1124,7 @@ This project is licensed under the ISC License - see the [LICENSE](LICENSE) file
 - [BIDS Specification](https://bids-specification.readthedocs.io/)
 - [Browser-based HED validator](https://www.hedtags.org/hed-web)
 
-## 📞 Support
+## Support
 
 - [Issues](https://github.com/hed-standard/hed-mcp/issues)
 - [HED homepage](https://github.com/hed-standard)
