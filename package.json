@@ -2,15 +2,15 @@
   "name": "hed-mcp",
   "version": "1.0.0",
   "description": "Model Context Protocol (MCP) server for HED (Hierarchical Event Descriptor) validation. Provides tools for validating HED strings, TSV files, and sidecar files through a standardized MCP interface.",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "bin": {
-    "hed-mcp-server": "dist/server.js"
+    "hed-mcp-server": "dist/src/server.js"
   },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "start": "node dist/server.js",
-    "start:http": "node dist/http-server.js",
+    "start": "node dist/src/server.js",
+    "start:http": "node dist/examples/http-server.js",
     "clean": "rimraf dist",
     "prebuild": "npm run clean",
     "test": "jest",
