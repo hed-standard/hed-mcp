@@ -140,7 +140,7 @@ This creates the distribution files in the `dist/` directory.
 ### Test the installation
 
 ```bash
-npx @modelcontextprotocol/inspector node dist/server.js
+npx @modelcontextprotocol/inspector node dist/src/server.js
 ```
 
 ## Server architecture
@@ -200,7 +200,7 @@ The server implements intelligent caching:
 The fastest way to test the server is using the MCP Inspector:
 
 ```bash
-npx @modelcontextprotocol/inspector node dist/server.js
+npx @modelcontextprotocol/inspector node dist/src/server.js
 ```
 
 This opens a web interface where you can interact with the server and test all available tools.
@@ -214,7 +214,7 @@ Test the server directly:
 npm start
 
 # WebSocket mode
-node dist/server.js --websocket --port=8080
+node dist/src/server.js --websocket --port=8080
 
 # HTTP REST API server
 npm run start:http
@@ -643,7 +643,7 @@ Add to your MCP client configuration:
   "servers": {
     "hed-mcp": {
       "command": "node",
-      "args": ["dist/server.js"],
+      "args": ["dist/src/server.js"],
       "cwd": "/path/to/hed-mcp"
     }
   }
@@ -655,7 +655,7 @@ Add to your MCP client configuration:
 Run the server in WebSocket mode for browser-based MCP clients:
 
 ```bash
-node dist/server.js --websocket --port=8080
+node dist/src/server.js --websocket --port=8080
 ```
 
 ### Environment variables
@@ -670,7 +670,7 @@ The server respects standard Node.js environment variables:
 Enable debug logging:
 
 ```bash
-DEBUG=* node dist/server.js
+DEBUG=* node dist/src/server.js
 ```
 
 Or in MCP client configuration:
@@ -680,7 +680,7 @@ Or in MCP client configuration:
   "servers": {
     "hed-mcp": {
       "command": "node",
-      "args": ["dist/server.js"],
+      "args": ["dist/src/server.js"],
       "env": {
         "DEBUG": "*"
       }
@@ -795,7 +795,7 @@ import { MCPClient } from '@modelcontextprotocol/client';
 const client = new MCPClient({
   server: {
     command: 'node',
-    args: ['dist/server.js'],
+    args: ['dist/src/server.js'],
     cwd: '/path/to/hed-mcp'
   }
 });
@@ -885,7 +885,7 @@ class HEDValidator:
 
 # Usage example
 async def main():
-    async with HEDValidator('/path/to/hed-mcp/dist/server.js') as validator:
+    async with HEDValidator('/path/to/hed-mcp/dist/src/server.js') as validator:
         # Validate a HED string
         result = await validator.validate_string(
             "Event/Sensory-event, Red, Blue",
@@ -989,7 +989,7 @@ npm run start:http  # Run HTTP API server
 
 4. **Test with inspector**:
    ```bash
-   npx @modelcontextprotocol/inspector node dist/server.js
+   npx @modelcontextprotocol/inspector node dist/src/server.js
    ```
 
 ## Troubleshooting

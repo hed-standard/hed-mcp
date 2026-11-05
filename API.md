@@ -214,7 +214,7 @@ All tools follow consistent error handling patterns:
 ### Using with MCP Inspector
 
 ```bash
-npx @modelcontextprotocol/inspector node dist/server.js
+npx @modelcontextprotocol/inspector node dist/src/server.js
 ```
 
 ### Using Programmatically
@@ -226,7 +226,7 @@ The server can be integrated into any MCP-compatible client. Example server conf
   "servers": {
     "hed-mcp": {
       "command": "node",
-      "args": ["dist/server.js"],
+      "args": ["dist/src/server.js"],
       "cwd": "/path/to/hed-mcp-typescript"
     }
   }

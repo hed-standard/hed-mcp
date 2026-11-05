@@ -22,10 +22,10 @@ This document provides practical examples of using the HED MCP Server for variou
 npm run build
 
 # Option 1: Use MCP Inspector (recommended for testing)
-npx @modelcontextprotocol/inspector node dist/server.js
+npx @modelcontextprotocol/inspector node dist/src/server.js
 
 # Option 2: Run directly (for programmatic use)
-node dist/server.js
+node dist/src/server.js
 
 # Option 3: Use the test client
 node test-mcp-client.js
@@ -38,7 +38,7 @@ node test-mcp-client.js
   "servers": {
     "hed-mcp": {
       "command": "node",
-      "args": ["dist/server.js"],
+      "args": ["dist/src/server.js"],
       "cwd": "/path/to/hed-mcp-typescript"
     }
   }
@@ -574,7 +574,7 @@ done
 Use the MCP Inspector for rapid prototyping and testing:
 
 ```bash
-npx @modelcontextprotocol/inspector node dist/server.js
+npx @modelcontextprotocol/inspector node dist/src/server.js
 ```
 
 This provides a web interface for:
